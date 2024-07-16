@@ -1,12 +1,5 @@
-# hycrypt/test.py
-# Created on Friday, 12th July 2024 10:27:38 pm
-# Author: Sira Pornsiriprasert <code@psira.me>
-#
-# Last modified on Saturday, 13th July 2024 2:14:09 am
-# By Sira Pornsiriprasert <code@psira.me>
-#
-# The 3-Clause BSD License
-# hycrypt Copyright 2024 Sira Pornsiriprasert
+# hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
+# Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
 import os
 import random
@@ -17,11 +10,11 @@ from cryptography.hazmat.primitives.hashes import (
     SHA256,
     SHA384,
     SHA512,
-    SHAKE128,
     HashAlgorithm,
 )
+from progress.bar import Bar
 
-from hycrypt import hycrypt
+import hycrypt
 
 SHA2 = [SHA224, SHA256, SHA384, SHA512]
 
@@ -70,6 +63,33 @@ def encrypt_decrypt_with_password(
     return plaintext == decrypted_text
 
 
+def encrypt_reencrypt_decrypt(
+    plaintext1,
+    plaintext2,
+    password,
+    salt_length=16,
+    key_size=2048,
+    padding_hash_algorithm: HashAlgorithm = SHA256(),
+) -> bool:
+    ciphertext1, public_key = hycrypt.encrypt_with_password(
+        plaintext1,
+        password,
+        padding_hash_algorithm,
+        salt_length=salt_length,
+        key_size=key_size,
+    )
+
+    ciphertext2 = hycrypt.encrypt_with_public_key(
+        ciphertext1, plaintext2, public_key, padding_hash_algorithm
+    )
+
+    decrypted_text = hycrypt.decrypt_with_password(
+        ciphertext2, password, padding_hash_algorithm
+    )
+
+    return plaintext2 == decrypted_text
+
+
 class FixedTest(unittest.TestCase):
 
     def test_encrypt_decrypt(self):
@@ -80,7 +100,6 @@ class FixedTest(unittest.TestCase):
             self.assertTrue(encrypt_decrypt_data(b"secret"), algorithm())
             for algorithm in SHA2
         )
-        
 
     def test_encrypt_decrypt_with_password(self):
         (
@@ -92,47 +111,136 @@ class FixedTest(unittest.TestCase):
             for algorithm in SHA2
         )
 
+    def test_encrypt_reencrypt_decrypt(self):
+        (
+            self.assertTrue(
+                encrypt_reencrypt_decrypt(
+                    b"secret",
+                    b"newsecret",
+                    b"password123456",
+                    padding_hash_algorithm=algorithm(),
+                )
+            )
+            for algorithm in SHA2
+        )
+
 
 class RandomTest(unittest.TestCase):
 
     def test_encrypt_decrypt(self):
-        # for _ in range(200):
-        #     size = random.randrange(64)
-        #     plaintext = os.urandom(size)
-        #     hash_algorithm = random.choice(SHA2)
-        #     self.assertTrue(encrypt_decrypt(plaintext, hash_algorithm))
-        pass
+        def do(times):
+            with Bar("test_encrypt_decrypt", max=times) as bar:
+                for _ in range(times):
+                    size = random.randrange(64)
+                    plaintext = os.urandom(size)
+                    algorithm = random.choice(SHA2)
+                    self.assertTrue(encrypt_decrypt(plaintext, algorithm()))
+                    bar.next()
+                bar.finish()
+
+        do(200)
 
     def test_encrypt_decrypt_data(self):
-        for _ in range(200):
-            size = random.randrange(64)
-            plaintext = os.urandom(size)
-            hash_algorithm = random.choice(SHA2)()
-            print(f"{size} {hash_algorithm.name}")
-            self.assertTrue(encrypt_decrypt_data(plaintext, hash_algorithm))
+        def do(times):
+            with Bar("test_encrypt_decrypt_data", max=times) as bar:
+                for _ in range(times):
+                    size = random.randrange(64)
+                    plaintext = os.urandom(size)
+                    hash_algorithm = random.choice(SHA2)()
+                    self.assertTrue(encrypt_decrypt_data(plaintext, hash_algorithm))
+                    bar.next()
+                bar.finish()
+
+        do(200)
 
     def test_encrypt_decrypt_with_password(self):
-        def rand_test_encrypt_decrypt_with_password(times, key_size):
-            for _ in range(times):
-                salt_length = random.randrange(32)
-                size = random.randrange(64)
+        def do(times, key_size):
+            with Bar(f"{key_size}-bit", max=times) as bar:
+                for _ in range(times):
+                    salt_length = random.randrange(32)
+                    size = random.randrange(64)
+                    password = os.urandom(32)
+                    plaintext = os.urandom(size)
+                    hash_algorithm = random.choice(SHA2)
+                    self.assertTrue(
+                        encrypt_decrypt_with_password(
+                            plaintext, password, salt_length, key_size, hash_algorithm()
+                        )
+                    )
+                    bar.next()
+                bar.finish()
+
+        do(100, 2048)
+        do(50, 3072)
+        do(10, 4096)
+
+    def test_encrypt_reencrypt_decrypt(self):
+        def do(times, key_size):
+            with Bar(f"{key_size}-bit", max=times) as bar:
+                for _ in range(times):
+                    salt_length = random.randrange(32)
+                    password = os.urandom(32)
+                    plaintext1 = os.urandom(random.randrange(64))
+                    plaintext2 = os.urandom(random.randrange(64))
+                    hash_algorithm = random.choice(SHA2)
+                    self.assertTrue(
+                        encrypt_reencrypt_decrypt(
+                            plaintext1,
+                            plaintext2,
+                            password,
+                            salt_length,
+                            key_size,
+                            hash_algorithm(),
+                        )
+                    )
+                    bar.next()
+                bar.finish()
+
+        do(100, 2048)
+        do(50, 3072)
+        do(10, 4096)
+
+
+class LargeTest(unittest.TestCase):
+    def test_encrypt_decrypt(self):
+        for algorithm in SHA2:
+            plaintext = os.urandom(10000)
+            self.assertTrue(encrypt_decrypt(plaintext, algorithm()))
+
+    def test_encrypt_decrypt_data(self):
+        for algorithm in SHA2:
+            plaintext = os.urandom(10000)
+            self.assertTrue(encrypt_decrypt_data(plaintext, algorithm()))
+
+    def test_encrypt_decrypt_with_password(self):
+        for key_size in [2048, 3072, 4096]:
+            for algorithm in SHA2:
+                plaintext = os.urandom(10000)
                 password = os.urandom(32)
-                plaintext = os.urandom(size)
-                hash_algorithm = random.choice(SHA2)
                 self.assertTrue(
                     encrypt_decrypt_with_password(
-                        plaintext, password, salt_length, key_size, hash_algorithm()
+                        plaintext, password, 16, key_size, algorithm()
+                    )
+                )
+                
+    def test_encrypt_reencrypt_decrypt(self):
+        for key_size in [2048, 3072, 4096]:
+            for algorithm in SHA2:
+                plaintext1 = os.urandom(10000)
+                plaintext2 = os.urandom(8888)
+                password = os.urandom(32)
+                self.assertTrue(
+                    encrypt_reencrypt_decrypt(
+                        plaintext1, plaintext2, password, 16, key_size, algorithm()
                     )
                 )
 
-        # rand_test_encrypt_decrypt_with_password(100, 2048)
-        # rand_test_encrypt_decrypt_with_password(50, 3072)
-        # rand_test_encrypt_decrypt_with_password(10, 4096)
-
 
 if __name__ == "__main__":
+    print(f"{hycrypt.__name__} {hycrypt.__version__}")
     loader = unittest.TestLoader()
     suite = unittest.TestSuite()
     suite.addTest(loader.loadTestsFromTestCase(FixedTest))
+    suite.addTest(loader.loadTestsFromTestCase(LargeTest))
     suite.addTest(loader.loadTestsFromTestCase(RandomTest))
     unittest.TextTestRunner(verbosity=2).run(suite)

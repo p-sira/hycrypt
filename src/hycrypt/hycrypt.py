@@ -1,26 +1,20 @@
-# hycrypt/hycrypt.py
-# Created on Monday, 8th July 2024 1:25:37 pm
-# Author: Sira Pornsiriprasert <code@psira.me>
-#
-# Last modified on Saturday, 13th July 2024 2:13:54 am
-# By Sira Pornsiriprasert <code@psira.me>
-#
-# The 3-Clause BSD License
-# hycrypt Copyright 2024 Sira Pornsiriprasert
+# hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
+# Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
 """
 Hybrid cryptosystem for python
 
+Quick Start:
+- ciphertext, public_key = hycrypt.encrypt_with_password(plaintext, password=b"123456")
+- new_ciphertext = hycrypt.encrypt_with_public_key(ciphertext, new_plaintext, public_key)
+- decrypted_message = hycrypt.decrypt_with_password(new_ciphertext, password=b"123456")
+    
+
 Copyright 2024 Sira Pornsiriprasert
-
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
@@ -38,17 +32,14 @@ from cryptography.hazmat.primitives.serialization import (
     PrivateFormat,
 )
 
-__version__ = "0.0a1"
-
-
 def encrypt(
     plaintext: bytes,
     public_key: RSAPublicKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> tuple[bytes, bytes]:
-    """Encrypt plaintext using hybrid encryption
+    """Encrypt plaintext using hybrid encryption -> encrypted_symmetric_key, ciphertext
 
-    -> encrypted_symmetric_key, ciphertext
+    Extended desc
 
     Args:
         plaintext (bytes): The message you want to encrypt
@@ -73,9 +64,7 @@ def decrypt(
     private_key: RSAPrivateKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Decrypt ciphertext using hybrid decryption
-
-    -> plaintext
+    """Decrypt ciphertext using hybrid decryption -> plaintext
 
     Args:
         ciphertext (bytes): The message you want to decrypt
@@ -101,22 +90,16 @@ def decrypt(
 def generate_key_pair(
     public_exponent: int = 65537, key_size: int = 2048
 ) -> tuple[RSAPrivateKey, RSAPublicKey]:
-    """Generate RSA key pair
+    """Generate RSA key pair -> private_key, public_key
 
-    -> private_key, public_key
+    The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
 
     Args:
         public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
-        key_size (int, optional): The size of the new key in bits. The key should be at least 2048 bits.
-        The computation time for the key increases non-linearly by the key size. For security beyond 2030,
-        3072-bit is recommended. Defaults to 2048.
+        key_size (int, optional): The size of the new key in bits. The key should be at least 2048 bits. The computation time for the key increases non-linearly by the key size. For security beyond 2030, 3072-bit is recommended. Defaults to 2048.
 
     Returns:
         tuple[RSAPrivateKey, RSAPublicKey]: private_key, public_key
-
-        Private key is used for decryption and should be kept secret.
-
-        Public key can be shared
     """
     private_key = rsa.generate_private_key(public_exponent, key_size)
     return private_key, private_key.public_key()
@@ -127,9 +110,7 @@ def encrypt_data(
     public_key: RSAPublicKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Encrypt plaintext using hybrid encryption and concatenate the encrypted symmetric key and ciphertext together
-
-    -> encrypted_data
+    """Encrypt plaintext using hybrid encryption and concatenate the encrypted symmetric key and ciphertext together -> encrypted_data
 
     Args:
         plaintext (bytes): The message you want to encrypt
@@ -147,10 +128,8 @@ def decrypt_data(
     private_key: RSAPrivateKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Parse the encrypted data into encrypted symmetric key and ciphertext, then decrypt into plaintext using
-    hybrid decryption
+    """Parse the encrypted data into encrypted symmetric key and ciphertext, then decrypt into plaintext using hybrid decryption -> plaintext
 
-    -> plaintext
 
     Args:
         encrypted_data (bytes): The encrypted data consisting of encrypted symmetric key concatenated to ciphertext
@@ -179,9 +158,7 @@ def decrypt_data(
 
 
 def __format_data(salt: bytes, private_serial: bytes, encrypted_data: bytes) -> bytes:
-    """Concatenate salt, serialized private key, and encrypted data into the format
-
-    -> encrypted_data
+    """Concatenate salt, serialized private key, and encrypted data into the format -> encrypted_data
 
     Args:
         salt (bytes): Random bytes added to the password protecting the encrypted private key
@@ -197,9 +174,8 @@ def __format_data(salt: bytes, private_serial: bytes, encrypted_data: bytes) -> 
 
 
 def __parse_data(encrypted_data: bytes) -> tuple[bytes, bytes, bytes]:
-    """Take the input and break it into salt, private_serial, and encrypted data of encrypted symmetric key and ciphertext
+    """Take the input and break it into salt, private_serial, and encrypted data of encrypted symmetric key and ciphertext -> salt, private_serial, encrypted_data
 
-    -> salt, private_serial, encrypted_data
 
     Args:
         encrypted_data (bytes): The encrypted data consisting of salt, password-protected serialized private key,
@@ -236,22 +212,22 @@ def encrypt_with_password(
     public_exponent: int = 65537,
     key_size: int = 2048,
 ) -> tuple[bytes, RSAPublicKey]:
-    """Use password to encrypt plaintext using hybrid encryption
+    """Use password to encrypt plaintext using hybrid encryption -> encrypted_data, public_key
 
-    -> encrypted_data, public_key
+    Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
+    The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
+    The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
 
     Args:
         plaintext (bytes): The message you want to encrypt
         password (bytes): The password for hybrid encryption
         padding_hash_algorithm (HashAlgorithm, optional): Hash algorithm for asymmetric padding. Defaults to SHA256().
-        salt_length (int, optional): The length of salt in bytes. Defaults to 16. Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
+        salt_length (int, optional): The length of salt in bytes. Defaults to 16.
         public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
-        key_size (int, optional): The size of the new key in bits. The key should be at least 2048 bits. The computation time for the key increases non-linearly by the key size. For security beyond 2030, 3072-bit is recommended. Defaults to 2048.
+        key_size (int, optional): The size of the new key in bits. Defaults to 2048.
 
     Returns:
         tuple[bytes, RSAPublicKey]: encrypted_data, public_key
-        The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
-
     """
     salt = os.urandom(salt_length)
     private_key, public_key = generate_key_pair(public_exponent, key_size)
@@ -277,9 +253,9 @@ def encrypt_with_public_key(
     public_key: RSAPublicKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Use public key to encrypt plaintext using hybrid encryption. The encrypted data can later be decrypt with corresponding password.
+    """Use public key to encrypt plaintext using hybrid encryption. The encrypted data can later be decrypt with corresponding password. -> encrypted_data
 
-    -> encrypted_data
+    The data that was previously encrypted using password or re-encrypted using this function is required to parse the salt and private serial to later allow decryption with password.
 
     Args:
         previous_data (bytes): The data previously encrypted using password
@@ -303,9 +279,7 @@ def decrypt_with_password(
     password: bytes,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Use password to decrypt the data using hybrid decryption
-
-    -> plaintext
+    """Use password to decrypt the data using hybrid decryption -> plaintext
 
     Args:
         encrypted_data (bytes): The data you want to decrypt
@@ -313,9 +287,7 @@ def decrypt_with_password(
         padding_hash_algorithm (HashAlgorithm): Hash algorithm for asymmetric padding. Defaults to SHA256().
 
     Raises:
-        ValueError: Decryption failed. Raises when the private key stored does not correspond to
-        the public key used to encrypt the data. This suggests that the data had been modified
-        or encrypt using unrelated public key.
+        ValueError: Decryption failed. Raises when the private key stored does not correspond to the public key used to encrypt the data. This suggests that the data had been modified or encrypt using unrelated public key.
 
     Returns:
         bytes: plaintext

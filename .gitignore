@@ -1,3 +1,6 @@
+.venv
 .vscode
 build
 dist
+__pycache__
+/src/hycrypt.egg-info
