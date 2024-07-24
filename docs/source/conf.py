@@ -48,7 +48,7 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 html_css_files = [
     "custom.css",
-    # "theme.css",
+    "theme.css",
 ]
 
 import re
@@ -70,6 +70,5 @@ hycrypt.__doc__ = ""
 
 def setup(app):
     app.add_css_file("custom.css")
-    # app.add_css_file("theme.css")
-    # app.connect("builder-inited", override_docstrings)
+    app.add_css_file("theme.css")
     app.connect("autodoc-process-signature", process_signature)

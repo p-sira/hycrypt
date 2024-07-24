@@ -3,85 +3,93 @@
  * Copyright 2024 Sira Pornsiriprasert <code@psira.me>
  */
 
-@import "@catppuccin/palette/style";
-
 :root {
-    color-scheme: dark light;
+    /* Catppuccin Mocha palette */
+    --rosewater: #f5e0dc;
+    --flamingo: #f2cdcd;
+    --pink: #f5c2e7;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --maroon: #eba0ac;
+    --peach: #fab387;
+    --yellow: #f9e2af;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+    --sky: #89dceb;
+    --sapphire: #74c7ec;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
+    --text: #cdd6f4;
+    --subtext1: #bac2de;
+    --subtext0: #a6adc8;
+    --overlay2: #9399b2;
+    --overlay1: #7f849c;
+    --overlay0: #6c7086;
+    --surface2: #585b70;
+    --surface1: #45475a;
+    --surface0: #313244;
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+
+    /* Override */
+    --pst-color-primary: var(--rosewater) !important;
+    --pst-color-secondary: var(--maroon) !important;
+    --bg: var(--crust);
+    --header: var(--base);
+    --sig-name: var(--pink);
 }
 
-/* Dark theme (Mocha) - Default */
-:root {
-    --background: var(--ctp-mocha-pink);
-    --foreground: var(--ctp-mocha-text);
-    --sidebar-bg: var(--ctp-mocha-mantle);
-    --sidebar-fg: var(--ctp-mocha-subtext1);
-    --sidebar-hover: var(--ctp-mocha-blue);
-    --sidebar-active: var(--ctp-mocha-blue);
-    --toc-bg: var(--ctp-mocha-surface0);
-    --heading-color: var(--ctp-mocha-rosewater);
-    --link-color: var(--ctp-mocha-pink);
-    --link-hover-color: var(--ctp-mocha-maroon);
-    --btn-primary-bg: var(--ctp-mocha-blue);
-    --btn-primary-border: var(--ctp-mocha-blue);
-    --code-bg: var(--ctp-mocha-surface0);
-    --code-color: var(--ctp-mocha-peach);
-    --navbar-bg: var(--ctp-mocha-mantle);
-    --navbar-fg: var(--ctp-mocha-subtext1);
-    --navbar-hover: var(--ctp-mocha-blue);
-    --search-bg: var(--ctp-mocha-surface0);
-    --search-fg: var(--ctp-mocha-text);
-    --search-border: var(--ctp-mocha-overlay0);
-}
-
-/* Light theme (Latte) */
 [data-theme="light"] {
-    --background: var(--ctp-latte-base);
-    --foreground: var(--ctp-latte-text);
-    --sidebar-bg: var(--ctp-latte-mantle);
-    --sidebar-fg: var(--ctp-latte-subtext1);
-    --sidebar-hover: var(--ctp-latte-blue);
-    --sidebar-active: var(--ctp-latte-blue);
-    --toc-bg: var(--ctp-latte-surface0);
-    --heading-color: var(--ctp-latte-flamingo);
-    --link-color: var(--ctp-latte-blue);
-    --link-hover-color: var(--ctp-latte-sapphire);
-    --btn-primary-bg: var(--ctp-latte-blue);
-    --btn-primary-border: var(--ctp-latte-blue);
-    --code-bg: var(--ctp-latte-surface0);
-    --code-color: var(--ctp-latte-peach);
-    --navbar-bg: var(--ctp-latte-mantle);
-    --navbar-fg: var(--ctp-latte-subtext1);
-    --navbar-hover: var(--ctp-latte-blue);
-    --search-bg: var(--ctp-latte-surface0);
-    --search-fg: var(--ctp-latte-text);
-    --search-border: var(--ctp-latte-overlay0);
+    /* Catppuccin Latte palette */
+    --rosewater: #dc8a78;
+    --flamingo: #dd7878;
+    --pink: #ea76cb;
+    --mauve: #8839ef;
+    --red: #d20f39;
+    --maroon: #e64553;
+    --peach: #fe640b;
+    --yellow: #df8e1d;
+    --green: #40a02b;
+    --teal: #179299;
+    --sky: #04a5e5;
+    --sapphire: #209fb5;
+    --blue: #1e66f5;
+    --lavender: #7287fd;
+    --text: #4c4f69;
+    --subtext1: #5c5f77;
+    --subtext0: #6c6f85;
+    --overlay2: #7c7f93;
+    --overlay1: #8c8fa1;
+    --overlay0: #9ca0b0;
+    --surface2: #acb0be;
+    --surface1: #bcc0cc;
+    --surface0: #ccd0da;
+    --base: #eff1f5;
+    --mantle: #e6e9ef;
+    --crust: #dce0e8;
+
+    /* Override */
+    --pst-color-primary: var(--rosewater) !important;
+    --pst-color-secondary: var(--maroon) !important;
+    --bg: var(--base);
+    --header: var(--base);
+    --sig-name: var(--red);
 }
 
-/* Apply theme colors */
 body {
-    color: var(--foreground);
-    background-color: var(--background);
+    color: var(--text);
 }
 
-.bd-sidebar {
-    background-color: var(--sidebar-bg);
-}
-
-.bd-sidebar .nav>li>a {
-    color: var(--sidebar-fg);
-}
-
-.bd-sidebar .nav>li>a:hover {
-    color: var(--sidebar-hover);
-}
-
-.bd-sidebar .nav>.active>a,
-.bd-sidebar .nav>.active:hover>a {
-    color: var(--sidebar-active);
-}
-
+body,
+.bd-article-container,
+.bd-sidebar,
 .bd-toc {
-    background-color: var(--toc-bg);
+    background-color: var(--bg);
+}
+
+header.bd-header {
+    background-color: var(--header) !important;
 }
 
 h1,
@@ -90,58 +98,42 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--heading-color);
+    color: var(--maroon);
 }
 
 a {
-    color: var(--link-color);
+    color: var(--rosewater) !important;
 }
 
 a:hover {
-    color: var(--link-hover-color);
+    color: var(--maroon) !important;
 }
 
-.btn-primary {
-    background-color: var(--btn-primary-bg);
-    border-color: var(--btn-primary-border);
+.viewcode-link {
+    color: var(--maroon) !important;
+    text-decoration-color: var(--maroon) !important;
+    border-bottom-color: var(--maroon) !important;
 }
 
-.btn-primary:hover {
-    background-color: var(--link-hover-color);
-    border-color: var(--link-hover-color);
+.viewcode-link:hover {
+    color: var(--red) !important;
+    text-decoration-color: var(--red) !important;
+    border-bottom-color: var(--red) !important;
 }
 
 pre {
-    background-color: var(--code-bg);
-    color: var(--foreground);
+    background-color: var(--surface0);
+    color: var(--text);
 }
 
 code {
-    color: var(--code-color);
+    color: var(--peach) !important;
 }
 
-.highlight {
-    background: var(--code-bg);
+.sig-name {
+    color: var(--sig-name);
 }
 
-.navbar-light {
-    background-color: var(--navbar-bg) !important;
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: var(--navbar-fg);
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-    color: var(--navbar-hover);
-}
-
-.navbar-brand {
-    color: var(--heading-color) !important;
-}
-
-.bd-search input {
-    background-color: var(--search-bg);
-    color: var(--search-fg);
-    border-color: var(--search-border);
+.title.logo__title {
+    color: var(--maroon);
 }
