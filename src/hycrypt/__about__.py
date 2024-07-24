@@ -1,10 +1,6 @@
 # hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
 # Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
-"""
-About hycrypt
-"""
-
 __all__ = ["__name__", "__version__", "__author__", "__license__", "__copyright__"]
 
 __name__ = "hycrypt"

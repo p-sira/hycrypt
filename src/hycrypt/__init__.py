@@ -8,7 +8,8 @@ Quick Start:
 - ciphertext, public_key = hycrypt.encrypt_with_password(plaintext, password=b"123456")
 - new_ciphertext = hycrypt.encrypt_with_public_key(ciphertext, new_plaintext, public_key)
 - decrypted_message = hycrypt.decrypt_with_password(new_ciphertext, password=b"123456")
-    
+
+============
 
 Copyright 2024 Sira Pornsiriprasert
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

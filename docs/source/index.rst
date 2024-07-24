@@ -1,5 +1,5 @@
 ..
-   source is licensed under The 3-Clause BSD License, see LICENSE.
+   hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
    Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
 
@@ -10,7 +10,7 @@ Welcome to hycrypt's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   hycrypt
 
 Indices and tables
 ==================

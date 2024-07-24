@@ -1,0 +1,147 @@
+/*
+ * hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
+ * Copyright 2024 Sira Pornsiriprasert <code@psira.me>
+ */
+
+@import "@catppuccin/palette/style";
+
+:root {
+    color-scheme: dark light;
+}
+
+/* Dark theme (Mocha) - Default */
+:root {
+    --background: var(--ctp-mocha-pink);
+    --foreground: var(--ctp-mocha-text);
+    --sidebar-bg: var(--ctp-mocha-mantle);
+    --sidebar-fg: var(--ctp-mocha-subtext1);
+    --sidebar-hover: var(--ctp-mocha-blue);
+    --sidebar-active: var(--ctp-mocha-blue);
+    --toc-bg: var(--ctp-mocha-surface0);
+    --heading-color: var(--ctp-mocha-rosewater);
+    --link-color: var(--ctp-mocha-pink);
+    --link-hover-color: var(--ctp-mocha-maroon);
+    --btn-primary-bg: var(--ctp-mocha-blue);
+    --btn-primary-border: var(--ctp-mocha-blue);
+    --code-bg: var(--ctp-mocha-surface0);
+    --code-color: var(--ctp-mocha-peach);
+    --navbar-bg: var(--ctp-mocha-mantle);
+    --navbar-fg: var(--ctp-mocha-subtext1);
+    --navbar-hover: var(--ctp-mocha-blue);
+    --search-bg: var(--ctp-mocha-surface0);
+    --search-fg: var(--ctp-mocha-text);
+    --search-border: var(--ctp-mocha-overlay0);
+}
+
+/* Light theme (Latte) */
+[data-theme="light"] {
+    --background: var(--ctp-latte-base);
+    --foreground: var(--ctp-latte-text);
+    --sidebar-bg: var(--ctp-latte-mantle);
+    --sidebar-fg: var(--ctp-latte-subtext1);
+    --sidebar-hover: var(--ctp-latte-blue);
+    --sidebar-active: var(--ctp-latte-blue);
+    --toc-bg: var(--ctp-latte-surface0);
+    --heading-color: var(--ctp-latte-flamingo);
+    --link-color: var(--ctp-latte-blue);
+    --link-hover-color: var(--ctp-latte-sapphire);
+    --btn-primary-bg: var(--ctp-latte-blue);
+    --btn-primary-border: var(--ctp-latte-blue);
+    --code-bg: var(--ctp-latte-surface0);
+    --code-color: var(--ctp-latte-peach);
+    --navbar-bg: var(--ctp-latte-mantle);
+    --navbar-fg: var(--ctp-latte-subtext1);
+    --navbar-hover: var(--ctp-latte-blue);
+    --search-bg: var(--ctp-latte-surface0);
+    --search-fg: var(--ctp-latte-text);
+    --search-border: var(--ctp-latte-overlay0);
+}
+
+/* Apply theme colors */
+body {
+    color: var(--foreground);
+    background-color: var(--background);
+}
+
+.bd-sidebar {
+    background-color: var(--sidebar-bg);
+}
+
+.bd-sidebar .nav>li>a {
+    color: var(--sidebar-fg);
+}
+
+.bd-sidebar .nav>li>a:hover {
+    color: var(--sidebar-hover);
+}
+
+.bd-sidebar .nav>.active>a,
+.bd-sidebar .nav>.active:hover>a {
+    color: var(--sidebar-active);
+}
+
+.bd-toc {
+    background-color: var(--toc-bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    border-color: var(--btn-primary-border);
+}
+
+.btn-primary:hover {
+    background-color: var(--link-hover-color);
+    border-color: var(--link-hover-color);
+}
+
+pre {
+    background-color: var(--code-bg);
+    color: var(--foreground);
+}
+
+code {
+    color: var(--code-color);
+}
+
+.highlight {
+    background: var(--code-bg);
+}
+
+.navbar-light {
+    background-color: var(--navbar-bg) !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--navbar-fg);
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--navbar-hover);
+}
+
+.navbar-brand {
+    color: var(--heading-color) !important;
+}
+
+.bd-search input {
+    background-color: var(--search-bg);
+    color: var(--search-fg);
+    border-color: var(--search-border);
+}

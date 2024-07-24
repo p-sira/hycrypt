@@ -47,20 +47,29 @@ exclude_patterns = []
 html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 html_css_files = [
-    'custom.css',
+    "custom.css",
+    # "theme.css",
 ]
 
 import re
 
+patterns = [
+    (r"<cryptography\.hazmat\.primitives\.hashes\.SHA256\s+object>", "SHA256()"),
+]
+
+
 def process_signature(app, what, name, obj, options, signature, return_annotation):
     if signature:
-        pattern = re.compile(
-            r"<cryptography\.hazmat\.primitives\.hashes\.SHA256\s+object>"
-        )
-        signature = pattern.sub("SHA256()", signature)
+        for regex, replace in patterns:
+            pattern = re.compile(regex)
+            signature = pattern.sub(replace, signature)
     return (signature, return_annotation)
 
-def setup(app):
-    app.add_css_file('custom.css')
-    app.connect('autodoc-process-signature', process_signature)
 
+hycrypt.__doc__ = ""
+
+def setup(app):
+    app.add_css_file("custom.css")
+    # app.add_css_file("theme.css")
+    # app.connect("builder-inited", override_docstrings)
+    app.connect("autodoc-process-signature", process_signature)
