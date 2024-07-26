@@ -1,6 +1,6 @@
 .venv
 .vscode
-build
 dist
+docs/build/doctrees
 __pycache__
 /src/hycrypt.egg-info
