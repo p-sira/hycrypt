@@ -30,3 +30,9 @@ from .hycrypt import (
     decrypt_with_password,
     generate_key_pair,
 )
+from .fycrypt import (
+    encrypt_file_with_password,
+    encrypt_file_with_public_key,
+    decrypt_file_with_password,
+    FileCipher,
+)
