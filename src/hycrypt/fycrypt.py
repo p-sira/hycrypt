@@ -96,7 +96,7 @@ class FileCipher:
         self.public_exponent = public_exponent
         self.key_size = key_size
 
-    def create(self, password: bytes, plaintext: bytes | None = None) -> RSAPublicKey:
+    def create(self, password: bytes, plaintext: bytes | None = None) -> None:
         self.public_key = encrypt_file_with_password(
             self.file,
             plaintext if plaintext else b"",
@@ -106,16 +106,15 @@ class FileCipher:
             self.public_exponent,
             self.key_size,
         )
-        return self.public_key
 
     def __get_public_key(self, public_key: RSAPublicKey | None) -> RSAPublicKey:
-        public_key = public_key if not public_key else self.public_key
+        public_key = public_key if public_key else self.public_key
         if public_key:
             return public_key
         else:
             raise ValueError("No public key provided.")
 
-    def write(self, plaintext: bytes, public_key: RSAPublicKey | None = None):
+    def write(self, plaintext: bytes, public_key: RSAPublicKey | None = None) -> None:
         encrypt_file_with_public_key(
             self.file,
             plaintext,
@@ -123,7 +122,8 @@ class FileCipher:
             padding_hash_algorithm=self.padding_hash_algorithm,
         )
 
-    def read(self, password: bytes) -> tuple[bytes, RSAPublicKey]:
-        return decrypt_file_with_password(
+    def read(self, password: bytes) -> bytes:
+        plaintext, self.public_key = decrypt_file_with_password(
             self.file, password, padding_hash_algorithm=self.padding_hash_algorithm
         )
+        return plaintext
