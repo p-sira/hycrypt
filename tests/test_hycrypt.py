@@ -57,7 +57,7 @@ def encrypt_decrypt_with_password(
         salt_length=salt_length,
         key_size=key_size,
     )
-    decrypted_text = hycrypt.decrypt_with_password(
+    decrypted_text, _ = hycrypt.decrypt_with_password(
         ciphertext, password, padding_hash_algorithm
     )
     return plaintext == decrypted_text
@@ -83,7 +83,7 @@ def encrypt_reencrypt_decrypt(
         ciphertext1, plaintext2, public_key, padding_hash_algorithm
     )
 
-    decrypted_text = hycrypt.decrypt_with_password(
+    decrypted_text, _ = hycrypt.decrypt_with_password(
         ciphertext2, password, padding_hash_algorithm
     )
 

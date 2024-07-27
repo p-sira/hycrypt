@@ -2,7 +2,6 @@
 # Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
 import hycrypt
-from test import encrypt_decrypt_with_password
 
 plaintext = b"secret"  # Use b" " to declare bytes string literal
 plaintext = "secret".encode()  # Or use str.encode() to convert to bytes
@@ -39,6 +38,6 @@ new_ciphertext = hycrypt.encrypt_with_public_key(
 
 # Decrypting the data
 # When the user receive the message, they can decrypt using the password
-decrypted_message = hycrypt.decrypt_with_password(
+decrypted_message, _ = hycrypt.decrypt_with_password(
     new_ciphertext, password=b"rootadminqwerty123456"
 )
