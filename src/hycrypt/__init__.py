@@ -30,4 +30,4 @@ from .hycrypt import (
     decrypt_with_password,
     generate_key_pair,
 )
-import fycrypt
+from . import fycrypt

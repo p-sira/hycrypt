@@ -1,6 +1,10 @@
 # hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
 # Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
+"""
+Base hycrypt module with basic encrypt & decrypt and password-based hybrid cryptosystem
+"""
+
 import os
 
 from cryptography.fernet import Fernet
@@ -262,8 +266,8 @@ def decrypt_with_password(
     encrypted_data: bytes,
     password: bytes,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
-) -> bytes:
-    """Use password to decrypt the data using hybrid decryption -> plaintext
+) -> tuple[bytes, RSAPublicKey]:
+    """Use password to decrypt the data using hybrid decryption -> plaintext, public_key
 
     Args:
         encrypted_data (bytes): The data you want to decrypt
@@ -275,7 +279,8 @@ def decrypt_with_password(
 
     Returns:
         bytes: plaintext
+        RSAPublicKey: public_key
     """
     salt, private_serial, encrypted_data = __parse_data(encrypted_data)
     private_key = serialization.load_pem_private_key(private_serial, salt + password)
-    return decrypt_data(encrypted_data, private_key, padding_hash_algorithm)  # type: ignore
+    return decrypt_data(encrypted_data, private_key, padding_hash_algorithm), private_key.public_key()  # type: ignore
