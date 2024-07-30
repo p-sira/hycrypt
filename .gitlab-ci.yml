@@ -1,10 +1,15 @@
-pre_script:
+before_script:
   - source ./hycrypt/.venv/bin/activate
 
 build-job:
   stage: build
   script:
     - python -m build
+
+install:
+  stage: test
+  script:
+    - pip install .
 
 test-hycrypt:
   stage: test
