@@ -119,6 +119,22 @@ def decrypt_file_with_password(
 
 
 class FileCipher:
+    """Hybrid encryption file cipher for easy file I/O management.
+
+    - Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
+    - The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
+    - The public key is optional to initialize FileCipher. The cipher automatically stores public key when you use create() and read() functions and uses it to write() new encrypted data into the file.
+    - The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
+
+    Args:
+        file (File | BytesIO): File path or path-like object or byte stream buffer
+        public_key (RSAPublicKey | None, optional): The RSA public key to use in the encryption. Defaults to None.
+        padding_hash_algorithm (HashAlgorithm, optional): Hash algorithm for asymmetric padding. Defaults to SHA256().
+        salt_length (int, optional): The length of salt in bytes. Defaults to 16.
+        public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
+        key_size (int, optional): The size of the new asymmetric key in bits. Defaults to 2048.
+    """
+
     def __init__(
         self,
         file: File | BytesIO,
@@ -128,21 +144,6 @@ class FileCipher:
         public_exponent: int = 65537,
         key_size: int = 2048,
     ) -> None:
-        """Hybrid encryption file cipher for easy file I/O management.
-
-        - Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
-        - The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
-        - The public key is optional to initialize FileCipher. The cipher automatically stores public key when you use create() and read() functions and uses it to write() new encrypted data into the file.
-        - The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
-
-        Args:
-            file (File | BytesIO): File path or path-like object or byte stream buffer
-            public_key (RSAPublicKey | None, optional): The RSA public key to use in the encryption. Defaults to None.
-            padding_hash_algorithm (HashAlgorithm, optional): Hash algorithm for asymmetric padding. Defaults to SHA256().
-            salt_length (int, optional): The length of salt in bytes. Defaults to 16.
-            public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
-            key_size (int, optional): The size of the new asymmetric key in bits. Defaults to 2048.
-        """
         self.file = file
         self.public_key = public_key
         self.padding_hash_algorithm = padding_hash_algorithm
