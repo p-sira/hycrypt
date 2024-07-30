@@ -6,14 +6,13 @@ stages:
   - deploy
 
 before_script:
-  script:
-    - python --version
-    - pip install virtualenv
-    - python -m venv .venv
-    - source .venv/bin/activate
-    - pip install -r requirements
-    - pip install -e .
-    - pip show hycrypt
+  - python --version
+  - pip install virtualenv
+  - python -m venv .venv
+  - source .venv/bin/activate
+  - pip install -r requirements
+  - pip install -e .
+  - pip show hycrypt
 
 build-job:
   stage: build
