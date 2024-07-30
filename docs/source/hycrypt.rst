@@ -1,5 +1,5 @@
-hycrypt package
-===============
+hycrypt
+=======
 
 .. automodule:: hycrypt
    :members:

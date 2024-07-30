@@ -67,6 +67,7 @@ def process_signature(app, what, name, obj, options, signature, return_annotatio
 
 
 hycrypt.__doc__ = ""
+hycrypt.fycrypt.__doc__ = ""
 
 def setup(app):
     app.add_css_file("custom.css")

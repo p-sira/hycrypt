@@ -126,10 +126,6 @@ pre {
     color: var(--text);
 }
 
-code {
-    color: var(--peach) !important;
-}
-
 .sig-name {
     color: var(--sig-name);
 }

@@ -3,14 +3,16 @@
    Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
 
-Welcome to hycrypt's documentation!
-===================================
+hycrypt Documentation
+=====================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   install
    hycrypt
+   fycrypt
 
 Indices and tables
 ==================
