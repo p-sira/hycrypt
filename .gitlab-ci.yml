@@ -1,5 +1,12 @@
-before_script:
+stages:
+  - build
+  - test
+  - deploy
+
+pre_script:
   - source ./hycrypt/.venv/bin/activate
+  - pip install -r requirements
+  - pip install -e .
 
 build-job:
   stage: build
