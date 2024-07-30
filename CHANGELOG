@@ -1,0 +1,4 @@
+1.0
+- Base encryption and decryption
+- Password-based hybrid cryptosystem
+- fycrypt: file-handling hybrid cryptosystem
