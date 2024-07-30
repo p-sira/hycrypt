@@ -2,5 +2,6 @@
 .vscode
 dist
 docs/build/doctrees
+/tests/test_file
 __pycache__
 /src/hycrypt.egg-info
