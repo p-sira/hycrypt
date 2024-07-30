@@ -19,11 +19,6 @@ build-job:
   script:
     - python -m build
 
-install:
-  stage: test
-  script:
-    - pip install .
-
 test-hycrypt:
   stage: test
   script:

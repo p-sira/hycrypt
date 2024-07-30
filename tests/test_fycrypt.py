@@ -275,9 +275,9 @@ class RandomTest(unittest.TestCase):
                     bar.next()
                 bar.finish()
 
-        # do(100, 2048)
-        # do(50, 3072)
-        # do(10, 4096)
+        do(100, 2048)
+        do(50, 3072)
+        do(10, 4096)
 
     def test_encrypt_reencrypt_decrypt_file(self):
         def do(times, key_size):
