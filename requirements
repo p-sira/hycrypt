@@ -9,7 +9,6 @@ cffi==1.16.0
 charset-normalizer==3.3.2
 cryptography==43.0.0
 docutils==0.21.2
-hycrypt==1.0
 idna==3.7
 imagesize==1.4.1
 Jinja2==3.1.4
