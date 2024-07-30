@@ -10,7 +10,7 @@ pre_script:
     - python --version
     - pip install virtualenv
     - python -m venv .venv
-    - source ./.venv/bin/activate
+    - source .venv/bin/activate
     - pip install -r requirements
     - pip install -e .
     - pip show hycrypt
@@ -28,12 +28,12 @@ install:
 test-hycrypt:
   stage: test
   script:
-    - python ./tests/test_hycrypt.py
+    - python tests/test_hycrypt.py
 
 test-fycrypt:
   stage: test
   script:
-    - python ./tests/test_fycrypt.py
+    - python tests/test_fycrypt.py
 
 build-docs:
   stage: deploy
