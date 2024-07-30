@@ -5,7 +5,7 @@ stages:
   - test
   - deploy
 
-pre_script:
+before_script:
   script:
     - python --version
     - pip install virtualenv
