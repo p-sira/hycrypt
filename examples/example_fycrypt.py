@@ -35,8 +35,7 @@ class MyApp:
 
     @staticmethod
     def data_to_str(data: list[Person]) -> str:
-        out = [f"{person.name},{person.age}" for person in data]
-        return "\n".join(out)
+        return "\n".join([f"{person.name},{person.age}" for person in data])
 
     def save(self):
         self.cipher.write(self.data_to_str(self.data).encode())

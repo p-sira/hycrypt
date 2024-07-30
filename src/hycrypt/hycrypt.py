@@ -84,7 +84,7 @@ def generate_key_pair(
 
     Args:
         public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
-        key_size (int, optional): The size of the new key in bits. The key should be at least 2048 bits. The computation time for the key increases non-linearly by the key size. For security beyond 2030, 3072-bit is recommended. Defaults to 2048.
+        key_size (int, optional): The size of the new asymmetric key in bits. The key should be at least 2048 bits. The computation time for the key increases non-linearly by the key size. For security beyond 2030, 3072-bit is recommended. Defaults to 2048.
 
     Returns:
         tuple[RSAPrivateKey, RSAPublicKey]: private_key, public_key
@@ -212,7 +212,7 @@ def encrypt_with_password(
         padding_hash_algorithm (HashAlgorithm, optional): Hash algorithm for asymmetric padding. Defaults to SHA256().
         salt_length (int, optional): The length of salt in bytes. Defaults to 16.
         public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
-        key_size (int, optional): The size of the new key in bits. Defaults to 2048.
+        key_size (int, optional): The size of the new asymmetric key in bits. Defaults to 2048.
 
     Returns:
         tuple[bytes, RSAPublicKey]: encrypted_data, public_key
