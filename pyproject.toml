@@ -15,7 +15,7 @@ classifiers = [
 dependencies = ["cryptography"]
 
 [project.urls]
-Homepage = "https://pypi.org/project/hycrypt/"
+Homepage = "https://gitlab.com/hycrypt/hycrypt"
 Documentation = "https://hycrypt.psira.me"
 Repository = "https://gitlab.com/hycrypt/hycrypt"
 Issues = "https://gitlab.com/hycrypt/hycrypt/-/issues"
