@@ -1,6 +1,8 @@
 # hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
 # Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
+"""File-based hybrid cryptosystem"""
+
 import os
 from io import BytesIO
 
@@ -10,6 +12,7 @@ from cryptography.hazmat.primitives.hashes import SHA256, HashAlgorithm
 import hycrypt
 
 """str | bytes | os.PathLike
+
 File path or path-like object
 """
 type File = str | bytes | os.PathLike
@@ -133,6 +136,14 @@ class FileCipher:
         salt_length (int, optional): The length of salt in bytes. Defaults to 16.
         public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
         key_size (int, optional): The size of the new asymmetric key in bits. Defaults to 2048.
+    
+    Examples:
+    ..code-block:: python
+        
+        cipher = fycrypt.FileCipher("path/to/file")
+        cipher.create(password=b"123456")
+        cipher.write(b"secret stuff")
+        cipher.read(password=b"123456")
     """
 
     def __init__(
