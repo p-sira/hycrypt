@@ -3,6 +3,7 @@
 
 import os
 from io import BytesIO
+from typing import TypeAlias
 
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicKey
 from cryptography.hazmat.primitives.hashes import SHA256, HashAlgorithm
@@ -13,7 +14,7 @@ import hycrypt
 
 File path or path-like object
 """
-type File = str | bytes | os.PathLike
+File: TypeAlias = str | bytes | os.PathLike
 
 
 def __read(file: File | BytesIO) -> bytes:
@@ -135,7 +136,7 @@ class FileCipher:
         salt_length (int, optional): The length of salt in bytes. Defaults to 16.
         public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
         key_size (int, optional): The size of the new asymmetric key in bits. Defaults to 2048.
-    
+
     Examples:
         >>> cipher = fycrypt.FileCipher("path/to/file")
         >>> cipher.create(password=b"123456")
