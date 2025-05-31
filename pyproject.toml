@@ -2,12 +2,16 @@
 name = "hycrypt"
 authors = [{ name = "Sira Pornsiriprasert", email = "code@psira.me" }]
 dynamic = ["version"]
-description = "Hybrid cryptosystem for python"
+description = "Stateless-overwrite hybrid cryptosystem for Python"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = "BSD-3-Clause"
 classifiers = [
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Operating System :: OS Independent",
   "Topic :: Security :: Cryptography",
 ]
