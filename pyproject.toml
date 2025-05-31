@@ -12,7 +12,9 @@ classifiers = [
   "Operating System :: OS Independent",
   "Topic :: Security :: Cryptography",
 ]
-dependencies = ["cryptography"]
+dependencies = [
+    "cryptography",
+]
 
 [project.urls]
 Homepage = "https://gitlab.com/hycrypt/hycrypt"
@@ -30,3 +32,10 @@ version = {attr = "hycrypt.__about__.__version__"}
 [build-system]
 requires = ["setuptools>=64", "cryptography"]
 build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "pydata-sphinx-theme>=0.14.4",
+    "sphinx>=7.1.2",
+]
