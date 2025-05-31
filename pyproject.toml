@@ -5,10 +5,9 @@ dynamic = ["version"]
 description = "Hybrid cryptosystem for python"
 readme = "README.md"
 requires-python = ">=3.8"
-license = { file = "LICENSE" }
+license = "BSD-3-Clause"
 classifiers = [
   "Programming Language :: Python :: 3",
-  "License :: OSI Approved :: BSD License",
   "Operating System :: OS Independent",
   "Topic :: Security :: Cryptography",
 ]
