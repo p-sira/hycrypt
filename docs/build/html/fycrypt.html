@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>fycrypt &#8212; hycrypt 1.0 documentation</title>
+    <title>file_cryptosystem &#8212; hycrypt 1.0 documentation</title>
   
   
   
@@ -16,31 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5795a44" />
-    <link rel="stylesheet" type="text/css" href="_static/theme.css?v=7ac30b30" />
+    <link rel="stylesheet" type="text/css" href="_static/theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5795a44" />
-    <link rel="stylesheet" type="text/css" href="_static/theme.css?v=7ac30b30" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=f2a433a1"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'fycrypt';</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -48,6 +50,7 @@
     <link rel="prev" title="hycrypt" href="hycrypt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -63,19 +66,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -83,7 +75,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +82,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -151,7 +142,7 @@
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    fycrypt
+    file_cryptosystem
   </a>
 </li>
 
@@ -166,29 +157,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
     </div>
     
@@ -197,15 +180,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -224,7 +203,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -255,7 +235,7 @@ document.write(`
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    fycrypt
+    file_cryptosystem
   </a>
 </li>
 
@@ -271,15 +251,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -296,9 +272,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -316,8 +297,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -326,7 +305,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">fycrypt</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">file_cryptosystem</span></li>
   </ul>
 </nav>
 </div>
@@ -343,11 +322,159 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-hycrypt.fycrypt">
-<span id="fycrypt"></span><h1>fycrypt<a class="headerlink" href="#module-hycrypt.fycrypt" title="Link to this heading">#</a></h1>
+  <section id="file-cryptosystem">
+<h1>file_cryptosystem<a class="headerlink" href="#file-cryptosystem" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">file_cryptosystem</span></code> is a module with FileCipher class and functions for file-based hybrid cryptosystem.</p>
+<p id="module-hycrypt.file_cryptosystem">File-based hybrid cryptosystem</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="hycrypt.fycrypt.FileCipher">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hycrypt.fycrypt.</span></span><span class="sig-name descname"><span class="pre">FileCipher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">65537</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/fycrypt/fycrypt.html#FileCipher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.fycrypt.FileCipher" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hycrypt.file_cryptosystem.</span></span><span class="sig-name descname"><span class="pre">BytesIO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_bytes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">b''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO" title="Link to this definition">#</a></dt>
+<dd><p>Buffered I/O implementation using an in-memory bytes buffer.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.close" title="Link to this definition">#</a></dt>
+<dd><p>Disable all I/O operations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.closed">
+<span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.closed" title="Link to this definition">#</a></dt>
+<dd><p>True if the file is closed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.flush" title="Link to this definition">#</a></dt>
+<dd><p>Does nothing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.getbuffer">
+<span class="sig-name descname"><span class="pre">getbuffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.getbuffer" title="Link to this definition">#</a></dt>
+<dd><p>Get a read-write view over the contents of the BytesIO object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.getvalue">
+<span class="sig-name descname"><span class="pre">getvalue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.getvalue" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the entire contents of the BytesIO object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.isatty">
+<span class="sig-name descname"><span class="pre">isatty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.isatty" title="Link to this definition">#</a></dt>
+<dd><p>Always returns False.</p>
+<p>BytesIO objects are not connected to a TTY-like device.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.read" title="Link to this definition">#</a></dt>
+<dd><p>Read at most size bytes, returned as a bytes object.</p>
+<p>If the size argument is negative, read until EOF is reached.
+Return an empty bytes object at EOF.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.read1">
+<span class="sig-name descname"><span class="pre">read1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.read1" title="Link to this definition">#</a></dt>
+<dd><p>Read at most size bytes, returned as a bytes object.</p>
+<p>If the size argument is negative or omitted, read until EOF is reached.
+Return an empty bytes object at EOF.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.readable">
+<span class="sig-name descname"><span class="pre">readable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.readable" title="Link to this definition">#</a></dt>
+<dd><p>Returns True if the IO object can be read.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.readinto">
+<span class="sig-name descname"><span class="pre">readinto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.readinto" title="Link to this definition">#</a></dt>
+<dd><p>Read bytes into buffer.</p>
+<p>Returns number of bytes read (0 for EOF), or None if the object
+is set not to block and has no data to read.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.readline">
+<span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.readline" title="Link to this definition">#</a></dt>
+<dd><p>Next line from the file, as a bytes object.</p>
+<p>Retain newline.  A non-negative size argument limits the maximum
+number of bytes to return (an incomplete line may be returned then).
+Return an empty bytes object at EOF.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.readlines">
+<span class="sig-name descname"><span class="pre">readlines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.readlines" title="Link to this definition">#</a></dt>
+<dd><p>List of bytes objects, each a line from the file.</p>
+<p>Call readline() repeatedly and return a list of the lines so read.
+The optional size argument, if given, is an approximate bound on the
+total number of bytes in the lines returned.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.seek">
+<span class="sig-name descname"><span class="pre">seek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.seek" title="Link to this definition">#</a></dt>
+<dd><p>Change stream position.</p>
+<dl class="simple">
+<dt>Seek to byte offset pos relative to position indicated by whence:</dt><dd><p>0  Start of stream (the default).  pos should be &gt;= 0;
+1  Current position - pos may be negative;
+2  End of stream - pos usually negative.</p>
+</dd>
+</dl>
+<p>Returns the new absolute position.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.seekable">
+<span class="sig-name descname"><span class="pre">seekable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.seekable" title="Link to this definition">#</a></dt>
+<dd><p>Returns True if the IO object can be seeked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.tell">
+<span class="sig-name descname"><span class="pre">tell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.tell" title="Link to this definition">#</a></dt>
+<dd><p>Current file position, an integer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.truncate">
+<span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.truncate" title="Link to this definition">#</a></dt>
+<dd><p>Truncate the file to at most size bytes.</p>
+<p>Size defaults to the current file position, as returned by tell().
+The current file position is unchanged.  Returns the new size.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.writable">
+<span class="sig-name descname"><span class="pre">writable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.writable" title="Link to this definition">#</a></dt>
+<dd><p>Returns True if the IO object can be written.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.write" title="Link to this definition">#</a></dt>
+<dd><p>Write bytes to file.</p>
+<p>Return the number of bytes written.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.BytesIO.writelines">
+<span class="sig-name descname"><span class="pre">writelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hycrypt.file_cryptosystem.BytesIO.writelines" title="Link to this definition">#</a></dt>
+<dd><p>Write lines to the file.</p>
+<p>Note that newlines are not added.  lines can be any iterable object
+producing bytes-like objects. This is equivalent to calling write() for
+each element.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.FileCipher">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hycrypt.file_cryptosystem.</span></span><span class="sig-name descname"><span class="pre">FileCipher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">65537</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/file_cryptosystem.html#FileCipher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.file_cryptosystem.FileCipher" title="Link to this definition">#</a></dt>
 <dd><p>Hybrid encryption file cipher for easy file I/O management.</p>
 <ul class="simple">
 <li><p>Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.</p></li>
@@ -359,31 +486,39 @@ document.write(`
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">File</span> <span class="pre">|</span> <span class="pre">BytesIO</span></code>) – File path or path-like object or byte stream buffer</p></li>
-<li><p><strong>public_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RSAPublicKey</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">optional</span></code>) – The RSA public key to use in the encryption. Defaults to None.</p></li>
-<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm,</span> <span class="pre">optional</span></code>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
-<li><p><strong>salt_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – The length of salt in bytes. Defaults to 16.</p></li>
-<li><p><strong>public_exponent</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – The public exponent of the key. You should always use 65537. Defaults to 65537.</p></li>
-<li><p><strong>key_size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – The size of the new asymmetric key in bits. Defaults to 2048.</p></li>
+<li><p><strong>public_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RSAPublicKey</span> <span class="pre">|</span> <span class="pre">None</span></code>, <em>optional</em>) – The RSA public key to use in the encryption. Defaults to None.</p></li>
+<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm</span></code>, <em>optional</em>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
+<li><p><strong>salt_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>optional</em>) – The length of salt in bytes. Defaults to 16.</p></li>
+<li><p><strong>public_exponent</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>optional</em>) – The public exponent of the key. You should always use 65537. Defaults to 65537.</p></li>
+<li><p><strong>key_size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>optional</em>) – The size of the new asymmetric key in bits. Defaults to 2048.</p></li>
 </ul>
 </dd>
 </dl>
+<p>Examples:
+..code-block:: python</p>
+<blockquote>
+<div><p>cipher = fycrypt.FileCipher(“path/to/file”)
+cipher.create(password=b”123456”)
+cipher.write(b”secret stuff”)
+cipher.read(password=b”123456”)</p>
+</div></blockquote>
 <dl class="py method">
-<dt class="sig sig-object py" id="hycrypt.fycrypt.FileCipher.create">
-<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/fycrypt/fycrypt.html#FileCipher.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.fycrypt.FileCipher.create" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.FileCipher.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/file_cryptosystem.html#FileCipher.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.file_cryptosystem.FileCipher.create" title="Link to this definition">#</a></dt>
 <dd><p>Create file and encrypt using the provided password</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>password</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The password for hybrid encryption</p></li>
-<li><p><strong>plaintext</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">optional</span></code>) – The message you want to encrypt. Can be empty or None. Defaults to None.</p></li>
+<li><p><strong>plaintext</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span> <span class="pre">|</span> <span class="pre">None</span></code>, <em>optional</em>) – The message you want to encrypt. Can be empty or None. Defaults to None.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="hycrypt.fycrypt.FileCipher.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/fycrypt/fycrypt.html#FileCipher.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.fycrypt.FileCipher.read" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.FileCipher.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/file_cryptosystem.html#FileCipher.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.file_cryptosystem.FileCipher.read" title="Link to this definition">#</a></dt>
 <dd><p>Decrypt and read the encrypted file -&gt; plaintext</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -399,14 +534,14 @@ document.write(`
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="hycrypt.fycrypt.FileCipher.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/fycrypt/fycrypt.html#FileCipher.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.fycrypt.FileCipher.write" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.FileCipher.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/file_cryptosystem.html#FileCipher.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.file_cryptosystem.FileCipher.write" title="Link to this definition">#</a></dt>
 <dd><p>Overwrite new encrypted data into the file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>plaintext</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The password for hybrid encryption</p></li>
-<li><p><strong>public_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RSAPublicKey</span> <span class="pre">|</span> <span class="pre">None,</span> <span class="pre">optional</span></code>) – The RSA public key to use in the encryption. Defaults to None.</p></li>
+<li><p><strong>public_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RSAPublicKey</span> <span class="pre">|</span> <span class="pre">None</span></code>, <em>optional</em>) – The RSA public key to use in the encryption. Defaults to None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -418,15 +553,15 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="hycrypt.fycrypt.decrypt_file_with_password">
-<span class="sig-prename descclassname"><span class="pre">hycrypt.fycrypt.</span></span><span class="sig-name descname"><span class="pre">decrypt_file_with_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/fycrypt/fycrypt.html#decrypt_file_with_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.fycrypt.decrypt_file_with_password" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.decrypt_file_with_password">
+<span class="sig-prename descclassname"><span class="pre">hycrypt.file_cryptosystem.</span></span><span class="sig-name descname"><span class="pre">decrypt_file_with_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/file_cryptosystem.html#decrypt_file_with_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.file_cryptosystem.decrypt_file_with_password" title="Link to this definition">#</a></dt>
 <dd><p>Read the encrypted file using password -&gt; plaintext, public_key</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">File</span> <span class="pre">|</span> <span class="pre">BytesIO</span></code>) – File path or path-like object or byte stream buffer</p></li>
 <li><p><strong>password</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The password for hybrid encryption</p></li>
-<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm,</span> <span class="pre">optional</span></code>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
+<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm</span></code>, <em>optional</em>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -439,8 +574,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="hycrypt.fycrypt.encrypt_file_with_password">
-<span class="sig-prename descclassname"><span class="pre">hycrypt.fycrypt.</span></span><span class="sig-name descname"><span class="pre">encrypt_file_with_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">65537</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/fycrypt/fycrypt.html#encrypt_file_with_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.fycrypt.encrypt_file_with_password" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.encrypt_file_with_password">
+<span class="sig-prename descclassname"><span class="pre">hycrypt.file_cryptosystem.</span></span><span class="sig-name descname"><span class="pre">encrypt_file_with_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">65537</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/file_cryptosystem.html#encrypt_file_with_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.file_cryptosystem.encrypt_file_with_password" title="Link to this definition">#</a></dt>
 <dd><p>Write encrypted data into file using password from the plaintext you provide -&gt; public_key</p>
 <ul class="simple">
 <li><p>Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.</p></li>
@@ -453,10 +588,10 @@ document.write(`
 <li><p><strong>file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">File</span> <span class="pre">|</span> <span class="pre">BytesIO</span></code>) – File path or path-like object or byte stream buffer</p></li>
 <li><p><strong>plaintext</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The message you want to encrypt</p></li>
 <li><p><strong>password</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The password for hybrid encryption</p></li>
-<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm,</span> <span class="pre">optional</span></code>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
-<li><p><strong>salt_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – The length of salt in bytes. Defaults to 16.</p></li>
-<li><p><strong>public_exponent</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – The public exponent of the key. You should always use 65537. Defaults to 65537.</p></li>
-<li><p><strong>key_size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int,</span> <span class="pre">optional</span></code>) – The size of the new asymmetric key in bits. Defaults to 2048.</p></li>
+<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm</span></code>, <em>optional</em>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
+<li><p><strong>salt_length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>optional</em>) – The length of salt in bytes. Defaults to 16.</p></li>
+<li><p><strong>public_exponent</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>optional</em>) – The public exponent of the key. You should always use 65537. Defaults to 65537.</p></li>
+<li><p><strong>key_size</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <em>optional</em>) – The size of the new asymmetric key in bits. Defaults to 2048.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -469,8 +604,8 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="hycrypt.fycrypt.encrypt_file_with_public_key">
-<span class="sig-prename descclassname"><span class="pre">hycrypt.fycrypt.</span></span><span class="sig-name descname"><span class="pre">encrypt_file_with_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/fycrypt/fycrypt.html#encrypt_file_with_public_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.fycrypt.encrypt_file_with_public_key" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hycrypt.file_cryptosystem.encrypt_file_with_public_key">
+<span class="sig-prename descclassname"><span class="pre">hycrypt.file_cryptosystem.</span></span><span class="sig-name descname"><span class="pre">encrypt_file_with_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/file_cryptosystem.html#encrypt_file_with_public_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.file_cryptosystem.encrypt_file_with_public_key" title="Link to this definition">#</a></dt>
 <dd><p>Write encrypted data into file using public key from the plaintext you provide</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -478,7 +613,7 @@ document.write(`
 <li><p><strong>file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">File</span> <span class="pre">|</span> <span class="pre">BytesIO</span></code>) – File path or path-like object or byte stream buffer</p></li>
 <li><p><strong>plaintext</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>) – The new message you want to encrypt</p></li>
 <li><p><strong>public_key</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RSAPublicKey</span></code>) – The RSA public key to use in the encryption.</p></li>
-<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm,</span> <span class="pre">optional</span></code>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
+<li><p><strong>padding_hash_algorithm</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">HashAlgorithm</span></code>, <em>optional</em>) – Hash algorithm for asymmetric padding. Defaults to SHA256().</p></li>
 </ul>
 </dd>
 </dl>
@@ -512,7 +647,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -523,26 +659,48 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.fycrypt.FileCipher"><code class="docutils literal notranslate"><span class="pre">FileCipher</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.fycrypt.FileCipher.create"><code class="docutils literal notranslate"><span class="pre">FileCipher.create()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.fycrypt.FileCipher.read"><code class="docutils literal notranslate"><span class="pre">FileCipher.read()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.fycrypt.FileCipher.write"><code class="docutils literal notranslate"><span class="pre">FileCipher.write()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO"><code class="docutils literal notranslate"><span class="pre">BytesIO</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.close"><code class="docutils literal notranslate"><span class="pre">BytesIO.close()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.closed"><code class="docutils literal notranslate"><span class="pre">BytesIO.closed</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.flush"><code class="docutils literal notranslate"><span class="pre">BytesIO.flush()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.getbuffer"><code class="docutils literal notranslate"><span class="pre">BytesIO.getbuffer()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.getvalue"><code class="docutils literal notranslate"><span class="pre">BytesIO.getvalue()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.isatty"><code class="docutils literal notranslate"><span class="pre">BytesIO.isatty()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.read"><code class="docutils literal notranslate"><span class="pre">BytesIO.read()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.read1"><code class="docutils literal notranslate"><span class="pre">BytesIO.read1()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.readable"><code class="docutils literal notranslate"><span class="pre">BytesIO.readable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.readinto"><code class="docutils literal notranslate"><span class="pre">BytesIO.readinto()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.readline"><code class="docutils literal notranslate"><span class="pre">BytesIO.readline()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.readlines"><code class="docutils literal notranslate"><span class="pre">BytesIO.readlines()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.seek"><code class="docutils literal notranslate"><span class="pre">BytesIO.seek()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.seekable"><code class="docutils literal notranslate"><span class="pre">BytesIO.seekable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.tell"><code class="docutils literal notranslate"><span class="pre">BytesIO.tell()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.truncate"><code class="docutils literal notranslate"><span class="pre">BytesIO.truncate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.writable"><code class="docutils literal notranslate"><span class="pre">BytesIO.writable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.write"><code class="docutils literal notranslate"><span class="pre">BytesIO.write()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.BytesIO.writelines"><code class="docutils literal notranslate"><span class="pre">BytesIO.writelines()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.fycrypt.decrypt_file_with_password"><code class="docutils literal notranslate"><span class="pre">decrypt_file_with_password()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.fycrypt.encrypt_file_with_password"><code class="docutils literal notranslate"><span class="pre">encrypt_file_with_password()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.fycrypt.encrypt_file_with_public_key"><code class="docutils literal notranslate"><span class="pre">encrypt_file_with_public_key()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.FileCipher"><code class="docutils literal notranslate"><span class="pre">FileCipher</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.FileCipher.create"><code class="docutils literal notranslate"><span class="pre">FileCipher.create()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.FileCipher.read"><code class="docutils literal notranslate"><span class="pre">FileCipher.read()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.FileCipher.write"><code class="docutils literal notranslate"><span class="pre">FileCipher.write()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.decrypt_file_with_password"><code class="docutils literal notranslate"><span class="pre">decrypt_file_with_password()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.encrypt_file_with_password"><code class="docutils literal notranslate"><span class="pre">encrypt_file_with_password()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hycrypt.file_cryptosystem.encrypt_file_with_public_key"><code class="docutils literal notranslate"><span class="pre">encrypt_file_with_public_key()</span></code></a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="_sources/fycrypt.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/fycrypt.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -557,8 +715,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -578,7 +736,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
@@ -591,7 +749,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
