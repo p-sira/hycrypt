@@ -86,3 +86,6 @@ pip install hycrypt
 4. The file is updated with the new encrypted symmetric key and the new ciphertext.
 
 Despite the writer not knowing the password, the data can be overwritten using public key. The encrypted private key remains a secret. Because the encrypted private key corresponds to the public key, the recipient who knows the password can still decrypt the data.
+
+## Disclaimer
+Hycrypt is intended for educational and experimental uses. While it employs reasonably secure cryptographic practices, it has not undergone formal security audits. Hence, it is not recommended for production environment without thorough review and modification. Consider opening an issue or submitting a pull request for potential issues and improvement.
