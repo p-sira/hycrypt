@@ -1,8 +1,6 @@
 # hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
 # Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
-"""File-based hybrid cryptosystem"""
-
 import os
 from io import BytesIO
 
@@ -138,12 +136,11 @@ class FileCipher:
         key_size (int, optional): The size of the new asymmetric key in bits. Defaults to 2048.
     
     Examples:
-    ..code-block:: python
-        
-        cipher = fycrypt.FileCipher("path/to/file")
-        cipher.create(password=b"123456")
-        cipher.write(b"secret stuff")
-        cipher.read(password=b"123456")
+        >>> cipher = fycrypt.FileCipher("path/to/file")
+        >>> cipher.create(password=b"123456")
+        >>> cipher.write(b"secret stuff")
+        >>> cipher.read(password=b"123456")
+
     """
 
     def __init__(
