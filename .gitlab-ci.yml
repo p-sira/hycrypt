@@ -18,16 +18,23 @@ build-job:
   stage: build
   script:
     - python -m build
+  only:
+    - dev
+    - main
 
 test-hycrypt:
   stage: test
   script:
     - python tests/test_hycrypt.py
+  only:
+    - main
 
 test-fycrypt:
   stage: test
   script:
     - python tests/test_fycrypt.py
+  only:
+    - main
 
 build-docs:
   stage: deploy
@@ -38,3 +45,6 @@ deploy-prod:
   stage: deploy
   script: echo Done
   environment: production
+  only:
+    - main
+    - doc

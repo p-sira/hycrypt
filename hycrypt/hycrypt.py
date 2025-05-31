@@ -25,9 +25,7 @@ def encrypt(
     public_key: RSAPublicKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> tuple[bytes, bytes]:
-    """Encrypt plaintext using hybrid encryption -> encrypted_symmetric_key, ciphertext
-
-    Extended desc
+    """Encrypt plaintext into encrypted_symmetric_key and ciphertext.
 
     Args:
         plaintext (bytes): The message you want to encrypt
@@ -52,7 +50,7 @@ def decrypt(
     private_key: RSAPrivateKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Decrypt ciphertext using hybrid decryption -> plaintext
+    """Decrypt ciphertext into plaintext.
 
     Args:
         ciphertext (bytes): The message you want to decrypt
@@ -78,7 +76,7 @@ def decrypt(
 def generate_key_pair(
     public_exponent: int = 65537, key_size: int = 2048
 ) -> tuple[RSAPrivateKey, RSAPublicKey]:
-    """Generate RSA key pair -> private_key, public_key
+    """Generate an RSA key pair.
 
     The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
 
@@ -98,7 +96,7 @@ def encrypt_data(
     public_key: RSAPublicKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Encrypt plaintext using hybrid encryption and concatenate the encrypted symmetric key and ciphertext together -> encrypted_data
+    """Encrypt plaintext and concatenate the ciphertext to the encrypted symmetric key.
 
     Args:
         plaintext (bytes): The message you want to encrypt
@@ -116,7 +114,7 @@ def decrypt_data(
     private_key: RSAPrivateKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Parse the encrypted data into encrypted symmetric key and ciphertext, then decrypt into plaintext using hybrid decryption -> plaintext
+    """Parse the encrypted data into encrypted symmetric key and ciphertext, then decrypt into plaintext.
 
 
     Args:
@@ -146,7 +144,7 @@ def decrypt_data(
 
 
 def __format_data(salt: bytes, private_serial: bytes, encrypted_data: bytes) -> bytes:
-    """Concatenate salt, serialized private key, and encrypted data into the format -> encrypted_data
+    """Concatenate salt, serialized private key, and encrypted data into the format.
 
     Args:
         salt (bytes): Random bytes added to the password protecting the encrypted private key
@@ -162,8 +160,7 @@ def __format_data(salt: bytes, private_serial: bytes, encrypted_data: bytes) -> 
 
 
 def __parse_data(encrypted_data: bytes) -> tuple[bytes, bytes, bytes]:
-    """Take the input and break it into salt, private_serial, and encrypted data of encrypted symmetric key and ciphertext -> salt, private_serial, encrypted_data
-
+    """Take the input and break it into salt, private_serial, and encrypted data of encrypted symmetric key and ciphertext.
 
     Args:
         encrypted_data (bytes): The encrypted data consisting of salt, password-protected serialized private key,
@@ -183,6 +180,7 @@ def __parse_data(encrypted_data: bytes) -> tuple[bytes, bytes, bytes]:
             re.split(
                 rb"(-----BEGIN ENCRYPTED PRIVATE KEY-----\n[\s\S]*?\n-----END ENCRYPTED PRIVATE KEY-----\n)",
                 encrypted_data,
+                maxsplit=3,
             )
         )
         if len(out) == 3:
@@ -200,11 +198,12 @@ def encrypt_with_password(
     public_exponent: int = 65537,
     key_size: int = 2048,
 ) -> tuple[bytes, RSAPublicKey]:
-    """Use password to encrypt plaintext using hybrid encryption -> encrypted_data, public_key
+    """Use password to encrypt plaintext using hybrid encryption.
 
-    Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
-    The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
-    The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
+    This function will generate a random RSA key pair.
+    - Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
+    - The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
+    - The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
 
     Args:
         plaintext (bytes): The message you want to encrypt
@@ -241,9 +240,12 @@ def encrypt_with_public_key(
     public_key: RSAPublicKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> bytes:
-    """Use public key to encrypt plaintext using hybrid encryption. The encrypted data can later be decrypt with corresponding password. -> encrypted_data
+    """Use public key to encrypt plaintext using hybrid encryption.
 
-    The data that was previously encrypted using password or re-encrypted using this function is required to parse the salt and private serial to later allow decryption with password.
+    The encrypted data can later be decrypt with corresponding password. The data that
+    was previously encrypted using password or re-encrypted using this function is required
+    to parse the salt and private serial to later allow decryption with password.
+    This function will not generate a new RSA key pair.
 
     Args:
         previous_data (bytes): The data previously encrypted using password
@@ -267,7 +269,7 @@ def decrypt_with_password(
     password: bytes,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> tuple[bytes, RSAPublicKey]:
-    """Use password to decrypt the data using hybrid decryption -> plaintext, public_key
+    """Use password to decrypt the data into plaintext and the public key.
 
     Args:
         encrypted_data (bytes): The data you want to decrypt

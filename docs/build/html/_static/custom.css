@@ -15,3 +15,7 @@
 .viewcode-link {
     font-size: 0.8em;
 }
+
+a.image-reference {
+    text-decoration: none;
+}
