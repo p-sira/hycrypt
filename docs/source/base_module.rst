@@ -1,5 +1,5 @@
-hycrypt
-=======
+Base Module
+===========
 
 ``hycrypt`` is a module with functions for basic encrypt & decrypt and password-based hybrid cryptosystem
 

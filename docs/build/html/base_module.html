@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>hycrypt &#8212; hycrypt 1.1 documentation</title>
+    <title>Base Module &#8212; hycrypt 1.1 documentation</title>
   
   
   
@@ -31,10 +31,10 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5795a44" />
-    <link rel="stylesheet" type="text/css" href="_static/theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=f5795a44" />
-    <link rel="stylesheet" type="text/css" href="_static/theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bb20b054" />
+    <link rel="stylesheet" type="text/css" href="_static/theme.css?v=7ac30b30" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bb20b054" />
+    <link rel="stylesheet" type="text/css" href="_static/theme.css?v=7ac30b30" />
   
   <!-- So that users can add custom icons -->
   <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -45,10 +45,10 @@
     <script src="_static/documentation_options.js?v=56dcb7b8"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'hycrypt';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'base_module';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="file_cryptosystem" href="file_cryptosystem.html" />
+    <link rel="next" title="File Cryptosystem" href="file_cryptosystem.html" />
     <link rel="prev" title="Installation" href="install.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -137,14 +137,14 @@
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    hycrypt
+    Base Module
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="file_cryptosystem.html">
-    file_cryptosystem
+    File Cryptosystem
   </a>
 </li>
 
@@ -230,14 +230,14 @@
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    hycrypt
+    Base Module
   </a>
 </li>
 
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="file_cryptosystem.html">
-    file_cryptosystem
+    File Cryptosystem
   </a>
 </li>
 
@@ -307,7 +307,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">hycrypt</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Base Module</span></li>
   </ul>
 </nav>
 </div>
@@ -324,13 +324,13 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="hycrypt">
-<h1>hycrypt<a class="headerlink" href="#hycrypt" title="Link to this heading">#</a></h1>
+  <section id="base-module">
+<h1>Base Module<a class="headerlink" href="#base-module" title="Link to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">hycrypt</span></code> is a module with functions for basic encrypt &amp; decrypt and password-based hybrid cryptosystem</p>
 <dl class="py function" id="module-hycrypt">
 <dt class="sig sig-object py" id="hycrypt.decrypt">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">decrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ciphertext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encrypted_symmetric_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#decrypt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.decrypt" title="Link to this definition">#</a></dt>
-<dd><p>Decrypt ciphertext using hybrid decryption -&gt; plaintext</p>
+<dd><p>Decrypt ciphertext into plaintext.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -352,7 +352,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="hycrypt.decrypt_data">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">decrypt_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encrypted_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#decrypt_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.decrypt_data" title="Link to this definition">#</a></dt>
-<dd><p>Parse the encrypted data into encrypted symmetric key and ciphertext, then decrypt into plaintext using hybrid decryption -&gt; plaintext</p>
+<dd><p>Parse the encrypted data into encrypted symmetric key and ciphertext, then decrypt into plaintext.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -379,7 +379,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="hycrypt.decrypt_with_password">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">decrypt_with_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encrypted_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#decrypt_with_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.decrypt_with_password" title="Link to this definition">#</a></dt>
-<dd><p>Use password to decrypt the data using hybrid decryption -&gt; plaintext, public_key</p>
+<dd><p>Use password to decrypt the data into plaintext and the public key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -404,8 +404,7 @@ RSAPublicKey: public_key</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="hycrypt.encrypt">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">encrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#encrypt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.encrypt" title="Link to this definition">#</a></dt>
-<dd><p>Encrypt plaintext using hybrid encryption -&gt; encrypted_symmetric_key, ciphertext</p>
-<p>Extended desc</p>
+<dd><p>Encrypt plaintext into encrypted_symmetric_key and ciphertext.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -426,7 +425,7 @@ RSAPublicKey: public_key</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="hycrypt.encrypt_data">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">encrypt_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#encrypt_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.encrypt_data" title="Link to this definition">#</a></dt>
-<dd><p>Encrypt plaintext using hybrid encryption and concatenate the encrypted symmetric key and ciphertext together -&gt; encrypted_data</p>
+<dd><p>Encrypt plaintext and concatenate the ciphertext to the encrypted symmetric key.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -447,10 +446,11 @@ RSAPublicKey: public_key</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="hycrypt.encrypt_with_password">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">encrypt_with_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">salt_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">65537</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#encrypt_with_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.encrypt_with_password" title="Link to this definition">#</a></dt>
-<dd><p>Use password to encrypt plaintext using hybrid encryption -&gt; encrypted_data, public_key</p>
-<p>Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
-The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
-The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.</p>
+<dd><p>Use password to encrypt plaintext using hybrid encryption.</p>
+<p>This function will generate a random RSA key pair.
+- Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
+- The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
+- The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -474,8 +474,11 @@ The key should be at least 2048 bits. The larger the key, the more secure, at th
 <dl class="py function">
 <dt class="sig sig-object py" id="hycrypt.encrypt_with_public_key">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">encrypt_with_public_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">previous_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plaintext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding_hash_algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SHA256()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#encrypt_with_public_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.encrypt_with_public_key" title="Link to this definition">#</a></dt>
-<dd><p>Use public key to encrypt plaintext using hybrid encryption. The encrypted data can later be decrypt with corresponding password. -&gt; encrypted_data</p>
-<p>The data that was previously encrypted using password or re-encrypted using this function is required to parse the salt and private serial to later allow decryption with password.</p>
+<dd><p>Use public key to encrypt plaintext using hybrid encryption.</p>
+<p>The encrypted data can later be decrypt with corresponding password. The data that
+was previously encrypted using password or re-encrypted using this function is required
+to parse the salt and private serial to later allow decryption with password.
+This function will not generate a new RSA key pair.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -497,7 +500,7 @@ The key should be at least 2048 bits. The larger the key, the more secure, at th
 <dl class="py function">
 <dt class="sig sig-object py" id="hycrypt.generate_key_pair">
 <span class="sig-prename descclassname"><span class="pre">hycrypt.</span></span><span class="sig-name descname"><span class="pre">generate_key_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_exponent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">65537</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hycrypt/hycrypt.html#generate_key_pair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hycrypt.generate_key_pair" title="Link to this definition">#</a></dt>
-<dd><p>Generate RSA key pair -&gt; private_key, public_key</p>
+<dd><p>Generate an RSA key pair.</p>
 <p>The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -541,7 +544,7 @@ The key should be at least 2048 bits. The larger the key, the more secure, at th
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">file_cryptosystem</p>
+        <p class="prev-next-title">File Cryptosystem</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -579,7 +582,7 @@ The key should be at least 2048 bits. The larger the key, the more secure, at th
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/hycrypt.rst.txt"
+      <li><a href="_sources/base_module.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>

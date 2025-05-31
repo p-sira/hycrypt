@@ -3,10 +3,10 @@
    Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
 
-file_cryptosystem
+File Cryptosystem
 =================
 
-``file_cryptosystem`` is a module with FileCipher class and functions for file-based hybrid cryptosystem.
+``file_cryptosystem`` is a module for file-based hybrid cryptosystem.
 
 .. automodule:: hycrypt.file_cryptosystem
    :members:

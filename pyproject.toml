@@ -22,15 +22,19 @@ Repository = "https://gitlab.com/hycrypt/hycrypt"
 Issues = "https://gitlab.com/hycrypt/hycrypt/-/issues"
 Changelog = "https://gitlab.com/hycrypt/hycrypt/-/blob/main/CHANGELOG"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
 [tool.setuptools.dynamic]
 version = {attr = "hycrypt.__about__.__version__"}
 
 [build-system]
 requires = ["setuptools>=64", "cryptography"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["hycrypt"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
 
 [dependency-groups]
 dev = [
