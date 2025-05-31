@@ -10,6 +10,7 @@ from cryptography.hazmat.primitives.hashes import SHA256, HashAlgorithm
 import hycrypt
 
 """str | bytes | os.PathLike
+
 File path or path-like object
 """
 type File = str | bytes | os.PathLike
@@ -43,8 +44,9 @@ def encrypt_file_with_password(
     public_exponent: int = 65537,
     key_size: int = 2048,
 ) -> RSAPublicKey:
-    """Write encrypted data into file using password from the plaintext you provide -> public_key
+    """Encrypt plaintext with password using hybrid encryption and write the encrypted data into file.
 
+    This function will generate a new RSA key pair.
     - Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
     - The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
     - The key should be at least 2048 bits. The larger the key, the more secure, at the expense of computation time to derive the key which increases non-linearly. For security beyond 2030, 3072-bit is recommended.
@@ -79,7 +81,7 @@ def encrypt_file_with_public_key(
     public_key: RSAPublicKey,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> None:
-    """Write encrypted data into file using public key from the plaintext you provide
+    """Encrypt plaintext with public key using hybrid encryption and write the encrypted data into file.
 
     Args:
         file (File | BytesIO): File path or path-like object or byte stream buffer
@@ -102,7 +104,7 @@ def decrypt_file_with_password(
     password: bytes,
     padding_hash_algorithm: HashAlgorithm = SHA256(),
 ) -> tuple[bytes, RSAPublicKey]:
-    """Read the encrypted file using password -> plaintext, public_key
+    """Decrypt the encrypted file using password
 
     Args:
         file (File | BytesIO): File path or path-like object or byte stream buffer
@@ -119,7 +121,7 @@ def decrypt_file_with_password(
 
 
 class FileCipher:
-    """Hybrid encryption file cipher for easy file I/O management.
+    """Convenient file-based hybrid encryption API.
 
     - Salt is a random bytes added to the password protecting the encrypted private key to defend against precomputed table attacks.
     - The public key can be stored and used to encrypt data at other times. Public keys can be shared. The encryption is one way, which means other people or you can encrypt the new data using this public key, and you can decrypt the message with password.
@@ -133,6 +135,13 @@ class FileCipher:
         salt_length (int, optional): The length of salt in bytes. Defaults to 16.
         public_exponent (int, optional): The public exponent of the key. You should always use 65537. Defaults to 65537.
         key_size (int, optional): The size of the new asymmetric key in bits. Defaults to 2048.
+    
+    Examples:
+        >>> cipher = fycrypt.FileCipher("path/to/file")
+        >>> cipher.create(password=b"123456")
+        >>> cipher.write(b"secret stuff")
+        >>> cipher.read(password=b"123456")
+
     """
 
     def __init__(
@@ -193,7 +202,7 @@ class FileCipher:
         )
 
     def read(self, password: bytes) -> bytes:
-        """Decrypt and read the encrypted file -> plaintext
+        """Decrypt the file using password
 
         Args:
             password (bytes): The password for hybrid encryption
