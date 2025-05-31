@@ -3,6 +3,7 @@
 
 import os
 from io import BytesIO
+from typing import TypeAlias
 
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicKey
 from cryptography.hazmat.primitives.hashes import SHA256, HashAlgorithm
@@ -13,7 +14,7 @@ import hycrypt
 
 File path or path-like object
 """
-type File = str | bytes | os.PathLike
+File: TypeAlias = str | bytes | os.PathLike
 
 
 def __read(file: File | BytesIO) -> bytes:
