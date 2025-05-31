@@ -1,7 +1,7 @@
 # hycrypt is licensed under The 3-Clause BSD License, see LICENSE.
 # Copyright 2024 Sira Pornsiriprasert <code@psira.me>
 
-from hycrypt.fycrypt import FileCipher
+from hycrypt.file_cryptosystem import FileCipher
 
 
 class Person:
