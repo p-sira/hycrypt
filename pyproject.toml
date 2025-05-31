@@ -16,11 +16,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://gitlab.com/hycrypt/hycrypt"
-Documentation = "https://hycrypt.psira.me"
-Repository = "https://gitlab.com/hycrypt/hycrypt"
-Issues = "https://gitlab.com/hycrypt/hycrypt/-/issues"
-Changelog = "https://gitlab.com/hycrypt/hycrypt/-/blob/main/CHANGELOG"
+Homepage = "https://github.com/p-sira/hycrypt"
+Documentation = "https://p-sira.github.io/hycrypt"
+Repository = "https://github.com/p-sira/hycrypt"
+Issues = "https://github.com/p-sira/hycrypt/issues"
+Changelog = "https://github.com/p-sira/hycrypt/blob/main/CHANGELOG"
 
 [tool.setuptools.dynamic]
 version = {attr = "hycrypt.__about__.__version__"}
