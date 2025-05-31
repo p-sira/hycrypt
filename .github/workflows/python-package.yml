@@ -21,14 +21,28 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('**/requirements') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-${{ matrix.python-version }}-
+          ${{ runner.os }}-pip-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         pip install -r requirements
+    - name: Install cryptography with compatibility fixes for Python 3.13
+      if: matrix.python-version == '3.13'
+      run: |
+        # For Python 3.13, install from source or use compatible versions
+        pip install --upgrade cffi
+        pip install --no-binary=cryptography cryptography
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
