@@ -22,7 +22,7 @@ Homepage = "https://github.com/p-sira/hycrypt"
 Documentation = "https://p-sira.github.io/hycrypt"
 Repository = "https://github.com/p-sira/hycrypt"
 Issues = "https://github.com/p-sira/hycrypt/issues"
-Changelog = "https://github.com/p-sira/hycrypt/blob/main/CHANGELOG"
+Changelog = "https://github.com/p-sira/hycrypt/blob/main/CHANGELOG.md"
 
 [tool.setuptools.dynamic]
 version = { attr = "hycrypt.__about__.__version__" }
