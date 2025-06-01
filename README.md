@@ -1,4 +1,4 @@
-# hycrypt
+# Hycrypt
 **Stateless-overwrite hybrid cryptosystem for Python**
 
 [![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD--3--Clause-brightgreen.svg)](https://opensource.org/license/BSD-3-clause)
