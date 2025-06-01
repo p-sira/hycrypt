@@ -15,9 +15,7 @@ classifiers = [
   "Operating System :: OS Independent",
   "Topic :: Security :: Cryptography",
 ]
-dependencies = [
-    "cryptography",
-]
+dependencies = ["cryptography"]
 
 [project.urls]
 Homepage = "https://github.com/p-sira/hycrypt"
@@ -27,23 +25,20 @@ Issues = "https://github.com/p-sira/hycrypt/issues"
 Changelog = "https://github.com/p-sira/hycrypt/blob/main/CHANGELOG"
 
 [tool.setuptools.dynamic]
-version = {attr = "hycrypt.__about__.__version__"}
+version = { attr = "hycrypt.__about__.__version__" }
 
 [build-system]
 requires = ["setuptools>=64", "cryptography"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-packages = ["hycrypt"]
-
-[tool.setuptools.package-dir]
-"" = "."
-
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests"]
 
 [dependency-groups]
 dev = [
-    "build>=1.2.2.post1",
-    "pydata-sphinx-theme>=0.14.4",
-    "pytest>=8.3.5",
-    "sphinx>=7.1.2",
+  "build>=1.2.2.post1",
+  "pydata-sphinx-theme>=0.14.4",
+  "pytest>=8.3.5",
+  "sphinx>=7.1.2",
 ]
