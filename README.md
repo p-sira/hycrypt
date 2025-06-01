@@ -12,8 +12,6 @@
 
 The caveat is that this cryptosystem does not guarantee authenticity of the message. Anyone with the public key can overwrite the message. However, without the private key (or password), they cannot read the encrypted message.
 
----
-
 ## Features
 
 - 🔒 **Hybrid encryption** using RSA + AES-CBC + HMAC
@@ -53,6 +51,8 @@ new_ciphertext = hycrypt.encrypt_with_public_key(previous_data=ciphertext, plain
 new_decrypted_message = hycrypt.decrypt_with_password(new_ciphertext, password=b"password1")
 assert new_decrypted_message == new_plaintext
 ```
+
+See examples and use cases in [examples/](https://github.com/p-sira/hycrypt/tree/main/examples).
 
 To install hycrypt using pip:
 ```
